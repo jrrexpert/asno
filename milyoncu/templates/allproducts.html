@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<style>
+	.star-ratings-rating-average,
+	.star-ratings-rating-count,
+	.star-ratings-rating-user {
+		display:none;
+	}
+</style>
+
+	      <div class="section group">
+			  {% for object in object_list %}
+				<div class="grid_1_of_4 images_1_of_4">
+					{% load ratings %}
+					{% ratings object %}
+					 <a href="{% url 'milyoncu:preview' object.slug %}"><img src="/{{ object.logo }}" alt="" /></a>
+					 <h2>{{object.name}} </h2>
+					<div class="price-details">
+				       <div class="price-number">
+							<p><span class="rupees">{{object.price}}$</span></p>
+					    </div>
+					       		<div class="add-cart">
+									<h4><a href="preview.html">Add to Cart</a></h4>
+							     </div>
+							 <div class="clear"></div>
+					</div>
+
+				</div>
+			  {% endfor %}
+
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,8 @@
+.idea/*
+__pycache__/
+*.xml
+*.pyc
+*.egg-info/
+*.egg
+.env
+db.sqlite3

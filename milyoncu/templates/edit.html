@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+
+    .icerik > p {
+        padding: 5px 0px 5px 0px;
+
+    }
+
+    p label {
+        font-weight: bold;
+        float:left
+    }
+
+    form p *{
+        padding: 10px;
+
+    }
+
+    .btn-default {
+        margin-left:10px;
+        border-radius: 4px;
+        background-color : #79aec8;
+        width: 150px;
+    height: 50px;
+        color : white;
+    }
+
+</style>
+
+
+{% if user.is_superuser %}
+<div class="main">
+<div class="content">
+    <form class="icerik" method="POST" class="post-form"  enctype="multipart/form-data">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">SAVE</button>
+    </form>
+    </div>
+    </div>
+{% endif %}
+
+{% endblock %}

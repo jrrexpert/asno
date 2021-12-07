@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<style>
+    .helptext {
+    display:none;}
+
+    .icerik >ul >li {
+    display:none;
+    }
+    .req {
+    padding-top:10px;
+    color: #383838;
+    margin-bottom: 0.5em;
+    font-size: 10px;
+    line-height: 1.2;
+    font-family: 'ambleregular';
+    font-weight: normal;
+    margin-top: 0px;
+    text-transform: uppercase;
+    }
+
+    .icerik > p {
+        padding: 5px 0px 5px 0px;
+    }
+</style>
+<div class="main">
+    <div class="content">
+      <h2>Sign up</h2>
+
+      <form class="icerik" method="post">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+          <div class="signup" style="display: inline-block;">
+             <input type="submit" value="Sign up"></input>
+              </div>
+      </form>
+
+        <div class="req">
+
+            <ol>Your password can't be too similar to your other personal information.
+            </ol>
+
+            <ol>
+                Your password must contain at least 8 characters.
+            </ol>
+
+            <ol>
+               Your password can't be a commonly used password.
+            </ol>
+
+            <ol>
+             Your password can't be entirely numeric.
+            </ol>
+
+        </div>
+        </div>
+        </div>
+
+{% endblock %}

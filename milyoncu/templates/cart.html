@@ -1,0 +1,207 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<style>
+	.star-ratings-rating-average,
+	.star-ratings-rating-count,
+	.star-ratings-rating-user {
+		display:none;
+	}
+		.table-fill {
+	  background: white;
+	  border-radius:3px;
+	  border-collapse: collapse;
+	  height: 320px;
+	  margin: auto;
+	  max-width: 1200px;
+	  padding:5px;
+	  width: 100%;
+	  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+	  animation: float 5s infinite;
+	}
+
+	th {
+	  color:#D5DDE5;;
+	  background:#1b1e24;
+	  border-bottom:4px solid #9ea7af;
+	  border-right: 1px solid #343a45;
+	  font-size:23px;
+	  font-weight: 100;
+	  padding:24px;
+	  text-align:left;
+	  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+	  vertical-align:middle;
+	}
+
+	th:first-child {
+	  border-top-left-radius:3px;
+	}
+
+	th:last-child {
+	  border-top-right-radius:3px;
+	  border-right:none;
+	}
+
+	tr {
+	  border-top: 1px solid #C1C3D1;
+	  border-bottom-: 1px solid #C1C3D1;
+	  color:#666B85;
+	  font-size:16px;
+	  font-weight:normal;
+	  text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+	}
+
+	tr:hover td {
+	  background:#4E5066;
+	  color:#FFFFFF;
+	  border-top: 1px solid #22262e;
+	}
+
+	tr:first-child {
+	  border-top:none;
+	}
+
+	tr:last-child {
+	  border-bottom:none;
+	}
+
+	tr:nth-child(odd) td {
+	  background:#EBEBEB;
+	}
+
+	tr:nth-child(odd):hover td {
+	  background:#4E5066;
+	}
+
+	tr:last-child td:first-child {
+	  border-bottom-left-radius:3px;
+	}
+
+	tr:last-child td:last-child {
+	  border-bottom-right-radius:3px;
+	}
+
+	td {
+	  background:#FFFFFF;
+	  padding:20px;
+	  text-align:left;
+	  vertical-align:middle;
+	  font-weight:300;
+	  font-size:18px;
+	  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+	  border-right: 1px solid #C1C3D1;
+	}
+
+	td:last-child {
+	  border-right: 0px;
+	}
+
+	th.text-left {
+	  text-align: left;
+	}
+
+	th.text-center {
+	  text-align: center;
+	}
+
+	th.text-right {
+	  text-align: right;
+	}
+
+	td.text-left {
+	  text-align: left;
+	}
+
+	td.text-center {
+	  text-align: center;
+	}
+
+	td.text-right {
+	  text-align: right;
+	}
+
+
+</style>
+ <div class="main">
+    <div class="content">
+
+    	<div class="section group">
+				<div class="cont-desc span_1_of_2">
+                        <table class="table-fill">
+                                    <thead>
+                                    <tr>
+                                    <th class="text-left">Logo</th>
+                                    <th class="text-left">Name</th>
+                                    <th class="text-left">Size</th>
+                                    <th class="text-left">Quantity</th>
+
+                                    <th class="text-left">Price</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="table-hover">
+
+                                    {% for object in object_list %}
+                                    <tr>
+                                    <td class="text-left"><img src="/{{object.product.logo}}" style="width:132px;height:132px;" /></td>
+                                    <td class="text-left">{{object.product.name}}</td>
+                                    <td class="text-left">{{object.product.size}}</td>
+                                    <td class="text-left">{{object.quantity}}</td>
+                                    <td class="text-left">$  {{ object.TotalPrice }}
+
+                                        <a href="{% url 'milyoncu:delete' object.id %}" >
+                                            <i class="fa fa-trash" style="float:right;" aria-hidden="true"></i>
+                                        </a>
+                                    </td>
+                                    </tr>
+
+
+                                    {% endfor %}
+                                    <tr>
+                                    <td colspan="4">Total Price</td>
+
+                                    <td colspan="1">{{cartTotal}}</td>
+
+                                    </tr>
+                                       <tr>
+                                    <td colspan="4">Amount of Items</td>
+
+                                    <td colspan="1">{{totalAmount}} </td>
+
+                                    </tr>
+                                    </tbody>
+                        </table>
+
+                    </div>
+                <div class="rightsidebar span_3_of_1">
+                            <h2>CATEGORIES</h2>
+                                <ul class="side-w3ls">
+                                  <li><a href="{% url 'milyoncu:sweatbands' %}">Sweatbands</a></li>
+                                  <li><a href="{% url 'milyoncu:headbands' %}">Headbands</a></li>
+                                  <li><a href="{% url 'milyoncu:bandanas' %}">Bandanas</a></li>
+                                  <li><a href="{% url 'milyoncu:balloons' %}">Balloons</a></li>
+                                  <li><a href="{% url 'milyoncu:tablecovers' %}">Table Covers</a></li>
+                                  <li><a href="{% url 'milyoncu:coasters' %}">Coasters</a></li>
+                                </ul>
+                         </div>
+
+
+
+                    <script type="text/javascript">
+    $(document).ready(function () {
+        $('#horizontalTab').easyResponsiveTabs({
+            type: 'default', //Types: default, vertical, accordion
+            width: 'auto', //auto or any width like 600px
+            fit: true   // 100% fit in a container
+        });
+    });
+   </script>
+
+   <div class="section group">
+
+
+			</div>
+        </div>
+
+ 				</div>
+ </div>
+{% endblock %}
